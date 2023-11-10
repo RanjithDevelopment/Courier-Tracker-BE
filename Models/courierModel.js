@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const courierSchema = new mongoose.Schema({
     packageName: { type: String, required: true, trim: true },
+    image: {type: String, required: true, trim: true },
     sender: { type: String, required: true, trim: true },
     reciver: { type: String, required: true, trim: true },
     shipmentDetails: { type: String, required: true, trim: true },

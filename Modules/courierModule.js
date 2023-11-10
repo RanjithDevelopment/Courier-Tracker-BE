@@ -2,8 +2,10 @@ const packageDetails = require('../Models/courierModel.js');
 const { ObjectId } = require('mongodb');
 module.exports.addPackage = async (req, res) => {
     try {
+      
         const package = await new packageDetails({
             packageName: req.body.packageName,
+            image: req.body.image,
             sender: req.body.sender,
             reciver: req.body.reciver,
             shipmentDetails: req.body.shipmentDetails,
