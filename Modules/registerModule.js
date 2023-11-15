@@ -91,7 +91,7 @@ module.exports.getbytrackingId = async(req,res)=>{
 try {
     const isValid = ObjectId.isValid(req.params.Id);
    
-       
+       console.log("success");
     if(isValid){
        const remove = await packageDetails.findById({ _id: new ObjectId(req.params.Id) });
     if(remove){
@@ -103,4 +103,21 @@ try {
     console.error('Error in tracking package data:', error);
         res.status(400).send('Error in tracking package data');
 }
+}
+
+module.exports.getPackageForParticularUser = async(req,res)=>{
+    try {
+        let userID = req.body.currentUser._id;
+        let packages = await packageDetails.find({ reciver: userID }); 
+
+        if (packages.length > 0) {
+            res.status(200).send(packages);
+        } else {
+            res.status(400).send({ msg: 'No packages found for the user' });
+        }
+    } 
+     catch (error) {
+        console.error({msg:'Error in geting particular package data:', error});
+        res.status(400).send({msg:'Error in geting particular package data'});
+    }
 }

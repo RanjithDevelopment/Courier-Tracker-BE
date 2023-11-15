@@ -7,6 +7,7 @@ Router.post('/signUp',register.signup);
 Router.post('/signin',register.signin);
 
 Router.use('/',auth.AuthenticateUser);
+Router.get('/users/getPackages',auth.authorizeUser,register.getPackageForParticularUser);
 Router.get('/getPackage/:Id',auth.authorizeUser,register.getbytrackingId);
 Router.get('/getUsers',auth.authorizeAdmin,register.getUsers);
 Router.delete('/user/delete/:id',auth.authorizeAdmin,register.deleteUser);
